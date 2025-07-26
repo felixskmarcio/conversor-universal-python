@@ -658,10 +658,8 @@ python -m cProfile -o profile.stats app.py
 
 ### 📞 Suporte Técnico
 
-- 📧 **Email**: support@conversor-universal.com
+- 📧 **Email**: felixskmarcio2@gmail.com
 - 💬 **Discord**: [Servidor da Comunidade](https://discord.gg/conversor)
-- 📖 **Wiki**: [Documentação Completa](https://docs.conversor-universal.com)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/user/repo/issues)
 
 ## 🤝 Contribuição
 
@@ -796,13 +794,6 @@ SOFTWARE.
 - **Python Community** - Bibliotecas incríveis
 - **Contributors** - Melhorias e feedback
 - **Security Researchers** - Relatórios de vulnerabilidades
-
-### 🏆 Prêmios e Certificações
-
-- 🥇 **Best Python Project 2024** - Python Awards
-- 🔒 **OWASP Compliance** - Security Certification
-- ⚡ **Performance Excellence** - Web Performance Awards
-- 🌟 **Open Source Hero** - GitHub Recognition
 
 ---
 
