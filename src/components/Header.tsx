@@ -2,19 +2,14 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { StatusBadge } from '@/components/ui/status-badge'
+import { Navigation } from '@/components/Navigation'
+import { StatusBadges } from '@/components/StatusBadges'
+import { CTAButtons } from '@/components/CTAButtons'
+import { QuickStats } from '@/components/QuickStats'
 import {
   Menu,
   X,
-  FileText,
-  Shield,
-  Zap,
-  Star,
-  Users,
-  Download,
-  Github,
-  ExternalLink
+  FileText
 } from 'lucide-react'
 import { ScrollReveal } from '@/components/ParallaxSection'
 
@@ -47,63 +42,23 @@ export default function Header() {
           </ScrollReveal>
 
           {/* Navigation Desktop - Oculto em mobile */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <ScrollReveal animation="fade-in" delay={200}>
-              <div className="flex items-center space-x-4 xl:space-x-6">
-                <a href="#converter" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
-                  Converter
-                </a>
-                <a href="#features" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
-                  Recursos
-                </a>
-                <a href="#stats" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
-                  Estatísticas
-                </a>
-                <a href="#about" className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">
-                  Sobre
-                </a>
-              </div>
+              <Navigation variant="desktop" />
             </ScrollReveal>
-          </nav>
+          </div>
 
           {/* Status Badges Desktop - Oculto em mobile */}
           <div className="hidden xl:flex items-center space-x-3">
             <ScrollReveal animation="scale-in" delay={300}>
-              <StatusBadge 
-                status="online" 
-                text="Sistema Online" 
-                className="text-xs"
-              />
-            </ScrollReveal>
-            <ScrollReveal animation="scale-in" delay={400}>
-              <Badge variant="secondary" className="text-xs px-2 py-1">
-                <Shield className="h-3 w-3 mr-1" />
-                Seguro
-              </Badge>
+              <StatusBadges variant="desktop" />
             </ScrollReveal>
           </div>
 
           {/* CTA Buttons Desktop - Responsivo */}
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-3">
+          <div className="hidden md:flex">
             <ScrollReveal animation="slide-in-from-right-4" delay={300}>
-              <Button 
-                variant="ghost" 
-                size="sm"
-                className="text-sm px-3 py-2"
-              >
-                <Github className="h-4 w-4 mr-2" />
-                <span className="hidden lg:inline">GitHub</span>
-              </Button>
-            </ScrollReveal>
-            <ScrollReveal animation="slide-in-from-right-4" delay={400}>
-              <Button 
-                size="sm"
-                className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-sm px-3 lg:px-4 py-2"
-              >
-                <Zap className="h-4 w-4 mr-1 lg:mr-2" />
-                <span className="hidden lg:inline">Começar</span>
-                <span className="lg:hidden">Start</span>
-              </Button>
+              <CTAButtons variant="desktop" />
             </ScrollReveal>
           </div>
 
@@ -130,84 +85,22 @@ export default function Header() {
           <div className="lg:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-sm">
             <div className="px-4 py-4 space-y-4">
               {/* Navigation Links Mobile */}
-              <nav className="space-y-3">
-                <a 
-                  href="#converter" 
-                  className="block text-base font-medium text-gray-700 hover:text-indigo-600 transition-colors py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Converter Documentos
-                </a>
-                <a 
-                  href="#features" 
-                  className="block text-base font-medium text-gray-700 hover:text-indigo-600 transition-colors py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Recursos e Funcionalidades
-                </a>
-                <a 
-                  href="#stats" 
-                  className="block text-base font-medium text-gray-700 hover:text-indigo-600 transition-colors py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Estatísticas em Tempo Real
-                </a>
-                <a 
-                  href="#about" 
-                  className="block text-base font-medium text-gray-700 hover:text-indigo-600 transition-colors py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Sobre o Projeto
-                </a>
-              </nav>
+              <Navigation 
+                variant="mobile" 
+                onItemClick={() => setIsMenuOpen(false)}
+              />
 
               {/* Status Badges Mobile */}
-              <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-200/50">
-                <StatusBadge 
-                  status="online" 
-                  text="Sistema Online" 
-                  className="text-xs"
-                />
-                <Badge variant="secondary" className="text-xs px-2 py-1">
-                  <Shield className="h-3 w-3 mr-1" />
-                  Seguro
-                </Badge>
-                <Badge variant="outline" className="text-xs px-2 py-1">
-                  <Star className="h-3 w-3 mr-1" />
-                  Gratuito
-                </Badge>
-              </div>
+              <StatusBadges variant="mobile" />
 
               {/* CTA Buttons Mobile */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <Button 
-                  variant="outline" 
-                  className="w-full sm:flex-1 justify-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Github className="h-4 w-4 mr-2" />
-                  Ver no GitHub
-                </Button>
-                <Button 
-                  className="w-full sm:flex-1 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 justify-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Zap className="h-4 w-4 mr-2" />
-                  Começar Agora
-                </Button>
-              </div>
+              <CTAButtons 
+                variant="mobile" 
+                onStartClick={() => setIsMenuOpen(false)}
+              />
 
               {/* Quick Stats Mobile */}
-              <div className="grid grid-cols-2 gap-3 pt-3 border-t border-gray-200/50">
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-lg font-bold text-indigo-600">1000+</div>
-                  <div className="text-xs text-gray-600">Conversões</div>
-                </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-lg font-bold text-purple-600">99.9%</div>
-                  <div className="text-xs text-gray-600">Uptime</div>
-                </div>
-              </div>
+              <QuickStats />
             </div>
           </div>
         )}

@@ -172,7 +172,10 @@ export default function StatsSection() {
               <ScrollReveal key={stat.label} animation="scale-in" delay={400 + index * 100}>
                 <div className="group relative">
                   {/* Card */}
-                  <div className="relative p-6 sm:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 overflow-hidden">
+                  <div 
+                    className="relative p-6 sm:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 overflow-hidden cursor-pointer"
+                    onClick={() => window.open('https://github.com/felixskmarcio/conversor-universal-python', '_blank')}
+                  >
                     {/* Background Gradient */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
                     
@@ -268,7 +271,15 @@ export default function StatsSection() {
                   Junte-se a milhares de usuários satisfeitos
                 </p>
               </div>
-              <button className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+              <button 
+                className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                onClick={() => {
+                  const converterSection = document.querySelector('[data-section="converter"]');
+                  if (converterSection) {
+                    converterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
                 <Download className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 <span className="text-sm sm:text-base">Converter Agora</span>
               </button>

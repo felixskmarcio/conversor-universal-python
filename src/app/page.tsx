@@ -238,7 +238,7 @@ export default function ConversorPage() {
         </ParallaxSection>
 
         {/* Converter Section com Parallax - Responsivo */}
-        <ParallaxSection speed={0.3} className="py-8 sm:py-12 lg:py-16 px-4">
+        <ParallaxSection speed={0.3} className="py-8 sm:py-12 lg:py-16 px-4" data-section="converter">
           <ScrollReveal animation="scale-in" delay={200}>
             <div className="mx-auto max-w-4xl space-y-6 sm:space-y-8">
               <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm hover-lift">
@@ -337,7 +337,7 @@ export default function ConversorPage() {
                   {/* Convert Button - Responsivo */}
                   <Button
                     onClick={handleConvert}
-                    disabled={!selectedFile || isConverting}
+                    disabled={isConverting}
                     className="w-full h-11 sm:h-12 text-base sm:text-lg"
                     size="lg"
                   >

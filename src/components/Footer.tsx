@@ -47,7 +47,7 @@ const quickStats = [
 ]
 
 const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub', color: 'hover:text-gray-900' },
+  { icon: Github, href: 'https://github.com/felixskmarcio/conversor-universal-python', label: 'GitHub', color: 'hover:text-gray-900' },
   { icon: Twitter, href: '#', label: 'Twitter', color: 'hover:text-blue-500' },
   { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-600' },
   { icon: Mail, href: '#', label: 'Email', color: 'hover:text-red-500' }
@@ -55,11 +55,8 @@ const socialLinks = [
 
 const quickLinks = [
   { name: 'Converter Documentos', href: '#converter' },
-  { name: 'Recursos', href: '#features' },
   { name: 'Estatísticas', href: '#stats' },
-  { name: 'Sobre', href: '#about' },
-  { name: 'Ajuda', href: '#help' },
-  { name: 'Contato', href: '#contact' }
+  { name: 'Recursos', href: '#features' }
 ]
 
 export default function Footer() {
@@ -218,7 +215,15 @@ export default function Footer() {
 
             {/* CTA Button */}
             <ScrollReveal animation="slide-in-from-bottom-4" delay={1000}>
-              <Button className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-sm sm:text-base py-2 sm:py-3">
+              <Button 
+                className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-sm sm:text-base py-2 sm:py-3"
+                onClick={() => {
+                  const converterSection = document.querySelector('[data-section="converter"]');
+                  if (converterSection) {
+                    converterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
                 <Download className="h-4 w-4 mr-2" />
                 Começar Agora
               </Button>
