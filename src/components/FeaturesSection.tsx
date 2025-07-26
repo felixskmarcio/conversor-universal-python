@@ -119,25 +119,27 @@ export default function FeaturesSection() {
           </div>
         </ScrollReveal>
 
-        {/* Stats Grid - Responsivo */}
+        {/* Stats Grid - Responsivo com altura padronizada */}
         <ScrollReveal animation="scale-in" delay={200}>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
             {stats.map((stat, index) => {
               const IconComponent = stat.icon
               return (
                 <ScrollReveal key={stat.label} animation="slide-in-from-bottom-4" delay={300 + index * 100}>
-                  <Card className="text-center p-4 sm:p-6 bg-white/80 backdrop-blur-sm border-0 shadow-lg hover-lift">
-                    <CardContent className="p-0 space-y-2 sm:space-y-3">
-                      <div className="flex justify-center">
-                        <div className="p-2 sm:p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
-                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                  <Card className="text-center bg-white/80 backdrop-blur-sm border-0 shadow-lg hover-lift h-[180px] flex flex-col">
+                    <CardContent className="p-4 sm:p-6 flex-1 flex flex-col justify-between">
+                      <div className="flex justify-center mb-4">
+                        <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
+                          <IconComponent className="h-5 w-5 text-white" />
                         </div>
                       </div>
-                      <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
-                        {stat.value}
-                      </div>
-                      <div className="text-xs sm:text-sm text-gray-600 font-medium">
-                        {stat.label}
+                      <div className="flex-1 flex flex-col justify-center space-y-3">
+                        <div className="text-2xl lg:text-3xl font-bold text-gray-900">
+                          {stat.value}
+                        </div>
+                        <div className="text-sm text-gray-600 font-medium leading-tight">
+                          {stat.label}
+                        </div>
                       </div>
                     </CardContent>
                   </Card>

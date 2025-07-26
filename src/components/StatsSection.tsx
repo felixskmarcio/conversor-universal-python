@@ -164,50 +164,53 @@ export default function StatsSection() {
           </ScrollReveal>
         </div>
 
-        {/* Main Stats Grid - Responsivo */}
+        {/* Main Stats Grid - Responsivo com altura padronizada */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {mainStats.map((stat, index) => {
             const IconComponent = stat.icon
             return (
               <ScrollReveal key={stat.label} animation="scale-in" delay={400 + index * 100}>
-                <div className="group relative">
-                  {/* Card */}
+                <div className="group relative h-full">
+                  {/* Card com altura padronizada */}
                   <div 
-                    className="relative p-6 sm:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 overflow-hidden cursor-pointer"
+                    className="relative p-6 sm:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 overflow-hidden cursor-pointer h-[320px] flex flex-col justify-between"
                     onClick={() => window.open('https://github.com/felixskmarcio/conversor-universal-python', '_blank')}
                   >
                     {/* Background Gradient */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                    <div 
+                      className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 cursor-pointer`}
+                      onClick={() => window.open('https://github.com/felixskmarcio/conversor-universal-python', '_blank')}
+                    />
                     
-                    {/* Icon */}
-                    <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 ${stat.bgColor} rounded-xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className={`h-6 w-6 sm:h-7 sm:w-7 ${stat.iconColor}`} />
+                    {/* Header com ícone e badge */}
+                    <div className="flex items-start justify-between mb-6">
+                      <div className={`inline-flex items-center justify-center w-14 h-14 ${stat.bgColor} rounded-xl group-hover:scale-110 transition-transform duration-300`}>
+                        <IconComponent className={`h-7 w-7 ${stat.iconColor}`} />
+                      </div>
+                      <Badge 
+                        variant={stat.trend.includes('-') ? 'destructive' : stat.trend === 'Estável' ? 'secondary' : 'default'}
+                        className="text-xs px-2 py-1"
+                      >
+                        {stat.trend}
+                      </Badge>
                     </div>
                     
-                    {/* Content */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-sm sm:text-base font-medium text-gray-600">{stat.label}</h3>
-                        <Badge 
-                          variant={stat.trend.includes('-') ? 'destructive' : stat.trend === 'Estável' ? 'secondary' : 'default'}
-                          className="text-xs px-2 py-1"
-                        >
-                          {stat.trend}
-                        </Badge>
-                      </div>
+                    {/* Conteúdo principal */}
+                    <div className="flex-1 flex flex-col justify-center space-y-4">
+                      <h3 className="text-base font-medium text-gray-600 leading-tight">{stat.label}</h3>
                       
                       <div className="flex items-baseline space-x-1">
                         {isVisible ? (
-                          <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+                          <span className="text-3xl lg:text-4xl font-bold text-gray-900">
                             {stat.value}
                           </span>
                         ) : (
-                          <LoadingPulse className="h-8 w-20 sm:h-10 sm:w-24" />
+                          <LoadingPulse className="h-10 w-24" />
                         )}
-                        <span className="text-lg sm:text-xl font-semibold text-gray-600">{stat.suffix}</span>
+                        <span className="text-xl font-semibold text-gray-600">{stat.suffix}</span>
                       </div>
                       
-                      <p className="text-xs sm:text-sm text-gray-500">{stat.description}</p>
+                      <p className="text-sm text-gray-500 leading-relaxed">{stat.description}</p>
                     </div>
                     
                     {/* Live Indicator */}
