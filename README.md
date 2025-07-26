@@ -752,19 +752,19 @@ python -m cProfile -o profile.stats app.py
 
 ### 🎯 Roadmap
 
-#### 📅 Q1 2024
+#### 📅 Q1 2026
 - [ ] Suporte a OCR para imagens
 - [ ] Conversão em lote
 - [ ] API GraphQL
 - [ ] Integração com cloud storage
 
-#### 📅 Q2 2024
+#### 📅 Q2 2026
 - [ ] Machine Learning para otimização
 - [ ] Suporte a mais formatos (EPUB, RTF)
 - [ ] Interface mobile nativa
 - [ ] Webhooks para notificações
 
-#### 📅 Q3 2024
+#### 📅 Q3 2026
 - [ ] Colaboração em tempo real
 - [ ] Versionamento de documentos
 - [ ] Análise de sentimento
@@ -777,7 +777,7 @@ python -m cProfile -o profile.stats app.py
 ```
 MIT License
 
-Copyright (c) 2024 Conversor Universal
+Copyright (c) 2025 Conversor Universal
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -808,13 +808,6 @@ SOFTWARE.
 - **Python Community** - Bibliotecas incríveis
 - **Contributors** - Melhorias e feedback
 - **Security Researchers** - Relatórios de vulnerabilidades
-
-### 🏆 Prêmios e Certificações
-
-- 🥇 **Best Python Project 2024** - Python Awards
-- 🔒 **OWASP Compliance** - Security Certification
-- ⚡ **Performance Excellence** - Web Performance Awards
-- 🌟 **Open Source Hero** - GitHub Recognition
 
 ---
 
