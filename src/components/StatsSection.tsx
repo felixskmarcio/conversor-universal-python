@@ -1,252 +1,281 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
-import { TrendingUp, Users, Clock, CheckCircle, Activity, Globe, Zap } from 'lucide-react';
-import { Badge, CountBadge } from '@/components/ui/badge';
-import { LoadingPulse } from '@/components/ui/loading';
+import React, { useState, useEffect } from 'react'
+import { Badge } from '@/components/ui/badge'
+import { CountBadge } from '@/components/ui/count-badge'
+import { LoadingPulse } from '@/components/ui/loading-pulse'
+import {
+  FileText,
+  Users,
+  Clock,
+  TrendingUp,
+  Zap,
+  Shield,
+  Globe,
+  Star,
+  Activity,
+  CheckCircle,
+  Timer,
+  Download
+} from 'lucide-react'
+import { ScrollReveal } from '@/components/ParallaxSection'
 
-// Types
-interface Stat {
-  icon: React.ComponentType<any>;
-  label: string;
-  value: number;
-  suffix: string;
-  gradient: string;
-  trend?: string;
-  description: string;
-}
-
-interface AdditionalStat {
-  icon: React.ComponentType<any>;
-  value: string;
-  label: string;
-}
-
-// Constants
-const INITIAL_STATS: Stat[] = [
-  {
-    icon: CheckCircle,
-    label: 'Conversões Realizadas',
-    value: 15420,
-    suffix: '+',
-    gradient: 'from-green-500 to-emerald-600',
-    trend: '+12%',
-    description: 'Documentos convertidos com sucesso'
-  },
-  {
-    icon: Users,
-    label: 'Usuários Ativos',
-    value: 2847,
-    suffix: '',
-    gradient: 'from-blue-500 to-cyan-600',
-    trend: '+8%',
-    description: 'Usuários online agora'
-  },
-  {
-    icon: Clock,
-    label: 'Tempo Médio',
-    value: 3.2,
-    suffix: 's',
-    gradient: 'from-purple-500 to-violet-600',
-    description: 'Velocidade de conversão'
-  },
-  {
-    icon: TrendingUp,
-    label: 'Taxa de Sucesso',
-    value: 99.8,
-    suffix: '%',
-    gradient: 'from-orange-500 to-red-600',
-    description: 'Conversões bem-sucedidas'
-  }
-];
-
-const ADDITIONAL_STATS: AdditionalStat[] = [
-  { icon: Globe, value: '50+', label: 'Países Atendidos' },
-  { icon: Zap, value: '24/7', label: 'Disponibilidade' },
-  { icon: Activity, value: '99.9%', label: 'Uptime' }
-];
-
-// Components
-interface StatCardProps {
-  stat: Stat;
-  index: number;
-}
-
-const StatCard: React.FC<StatCardProps> = ({ stat, index }) => {
-  const IconComponent = stat.icon;
-  
-  return (
-    <div className="group h-full">
-      <div className="relative bg-white rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200 hover:-translate-y-1 h-full flex flex-col">
-        {/* Background Gradient on Hover */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-[0.03] rounded-2xl transition-opacity duration-300`} />
-        
-        <div className="relative text-center flex flex-col h-full">
-          {/* Icon */}
-          <div className={`inline-flex items-center justify-center w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-lg mb-4 lg:mb-6 group-hover:scale-105 transition-transform duration-300`}>
-            <IconComponent className="h-7 w-7 lg:h-8 lg:w-8 text-white" />
-          </div>
-          
-          {/* Value */}
-          <div className="space-y-2 mb-4 flex-grow flex flex-col justify-center">
-            <div className="flex items-baseline justify-center space-x-1">
-              <span className="text-3xl lg:text-4xl font-bold text-gray-900">
-                {stat.value.toLocaleString()}
-              </span>
-              {stat.suffix && (
-                <span className="text-xl lg:text-2xl font-semibold text-gray-600">
-                  {stat.suffix}
-                </span>
-              )}
-            </div>
-            
-            <h3 className="text-base lg:text-lg font-bold text-gray-900">
-              {stat.label}
-            </h3>
-            
-            <p className="text-sm text-gray-600 leading-relaxed">
-              {stat.description}
-            </p>
-          </div>
-          
-          {/* Trend Badge */}
-          <div className="mt-auto">
-            {stat.trend ? (
-              <Badge variant="success" size="sm">
-                {stat.trend} este mês
-              </Badge>
-            ) : (
-              <div className="h-6"></div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-interface AdditionalStatCardProps {
-  stat: AdditionalStat;
-  index: number;
-}
-
-const AdditionalStatCard: React.FC<AdditionalStatCardProps> = ({ stat, index }) => {
-  const IconComponent = stat.icon;
-  
-  return (
-    <div className="text-center p-4 lg:p-6 rounded-xl bg-white/60 backdrop-blur-sm border border-gray-200/50 hover:bg-white/80 transition-all duration-300">
-      <div className="inline-flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-primary/10 mb-3 lg:mb-4">
-        <IconComponent className="h-5 w-5 lg:h-6 lg:w-6 text-primary" />
-      </div>
-      <div className="text-xl lg:text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
-      <div className="text-xs lg:text-sm text-gray-600">{stat.label}</div>
-    </div>
-  );
-};
-
-interface SectionHeaderProps {
-  isUpdating: boolean;
-}
-
-const SectionHeader: React.FC<SectionHeaderProps> = ({ isUpdating }) => (
-  <div className="text-center mb-12 lg:mb-16">
-    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-      <Activity className="h-4 w-4" />
-      <span>Estatísticas em Tempo Real</span>
-      {isUpdating && <LoadingPulse />}
-    </div>
-    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
-      Números que
-      <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent"> Impressionam</span>
-    </h2>
-    <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-      Veja como nossa plataforma está transformando a experiência de conversão de documentos ao redor do mundo
-    </p>
-  </div>
-);
-
-interface RealTimeIndicatorProps {
-  stats: Stat[];
-}
-
-const RealTimeIndicator: React.FC<RealTimeIndicatorProps> = ({ stats }) => (
-  <div className="flex items-center justify-center">
-    <div className="flex items-center space-x-3 px-4 lg:px-6 py-2 lg:py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full border border-green-200/50">
-      <div className="relative">
-        <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 bg-green-500 rounded-full animate-pulse"></div>
-        <div className="absolute inset-0 w-2.5 h-2.5 lg:w-3 lg:h-3 bg-green-500 rounded-full animate-ping opacity-75"></div>
-      </div>
-      <span className="text-xs lg:text-sm text-green-700 font-medium">
-        Atualizando em tempo real
-      </span>
-      <CountBadge count={Math.floor(stats[0].value / 1000)} variant="success" />
-    </div>
-  </div>
-);
-
-// Custom Hook
-const useRealTimeStats = () => {
-  const [stats, setStats] = useState<Stat[]>(INITIAL_STATS);
-  const [isUpdating, setIsUpdating] = useState(false);
+// Hook para estatísticas em tempo real
+function useRealTimeStats() {
+  const [stats, setStats] = useState({
+    conversions: 47832,
+    activeUsers: 1247,
+    avgTime: 2.3,
+    successRate: 99.7
+  })
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsUpdating(true);
-      
-      setTimeout(() => {
-        setStats(prevStats => 
-          prevStats.map(stat => ({
-            ...stat,
-            value: stat.label === 'Conversões Realizadas' 
-              ? stat.value + Math.floor(Math.random() * 5) + 1
-              : stat.label === 'Usuários Ativos'
-              ? Math.max(2800, stat.value + Math.floor(Math.random() * 10) - 5)
-              : stat.label === 'Tempo Médio'
-              ? Math.max(2.8, Math.min(4.2, stat.value + (Math.random() - 0.5) * 0.2))
-              : stat.value
-          }))
-        );
-        setIsUpdating(false);
-      }, 500);
-    }, 8000);
+      setStats(prev => ({
+        conversions: prev.conversions + Math.floor(Math.random() * 3),
+        activeUsers: prev.activeUsers + Math.floor(Math.random() * 5) - 2,
+        avgTime: Math.max(1.5, prev.avgTime + (Math.random() - 0.5) * 0.1),
+        successRate: Math.min(99.9, Math.max(99.0, prev.successRate + (Math.random() - 0.5) * 0.1))
+      }))
+    }, 3000)
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(interval)
+  }, [])
 
-  return { stats, isUpdating };
-};
+  return stats
+}
 
-function StatsSection() {
-  const { stats, isUpdating } = useRealTimeStats();
+export default function StatsSection() {
+  const stats = useRealTimeStats()
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  const mainStats = [
+    {
+      icon: FileText,
+      label: 'Conversões Realizadas',
+      value: stats.conversions.toLocaleString(),
+      suffix: '+',
+      trend: '+12%',
+      color: 'from-blue-500 to-cyan-500',
+      bgColor: 'bg-blue-50',
+      iconColor: 'text-blue-600',
+      description: 'Documentos convertidos com sucesso'
+    },
+    {
+      icon: Users,
+      label: 'Usuários Ativos',
+      value: stats.activeUsers.toLocaleString(),
+      suffix: '',
+      trend: '+8%',
+      color: 'from-green-500 to-emerald-500',
+      bgColor: 'bg-green-50',
+      iconColor: 'text-green-600',
+      description: 'Usuários online agora'
+    },
+    {
+      icon: Timer,
+      label: 'Tempo Médio',
+      value: stats.avgTime.toFixed(1),
+      suffix: 's',
+      trend: '-5%',
+      color: 'from-purple-500 to-violet-500',
+      bgColor: 'bg-purple-50',
+      iconColor: 'text-purple-600',
+      description: 'Velocidade de conversão'
+    },
+    {
+      icon: CheckCircle,
+      label: 'Taxa de Sucesso',
+      value: stats.successRate.toFixed(1),
+      suffix: '%',
+      trend: 'Estável',
+      color: 'from-orange-500 to-red-500',
+      bgColor: 'bg-orange-50',
+      iconColor: 'text-orange-600',
+      description: 'Conversões bem-sucedidas'
+    }
+  ]
+
+  const additionalStats = [
+    {
+      icon: Globe,
+      label: 'Países Atendidos',
+      value: '150+',
+      color: 'text-indigo-600'
+    },
+    {
+      icon: Shield,
+      label: 'Uptime',
+      value: '99.9%',
+      color: 'text-green-600'
+    },
+    {
+      icon: Zap,
+      label: 'Formatos',
+      value: '5+',
+      color: 'text-yellow-600'
+    },
+    {
+      icon: Star,
+      label: 'Avaliação',
+      value: '4.9/5',
+      color: 'text-pink-600'
+    }
+  ]
 
   return (
-    <section className="py-16 lg:py-20 bg-gradient-to-br from-white via-gray-50/30 to-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
-      
-      <div className="container mx-auto px-4 relative">
-        {/* Header */}
-        <SectionHeader isUpdating={isUpdating} />
+    <section id="stats" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
+        <div className="absolute top-0 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
+        <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
+      </div>
 
-        {/* Main Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12 lg:mb-16">
-          {stats.map((stat, index) => (
-            <StatCard key={index} stat={stat} index={index} />
-          ))}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+        {/* Header Section - Responsivo */}
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <ScrollReveal animation="fade-in" delay={100}>
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full mb-4 sm:mb-6">
+              <Activity className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 mr-2" />
+              <span className="text-xs sm:text-sm font-medium text-blue-800">Estatísticas em Tempo Real</span>
+            </div>
+          </ScrollReveal>
+          
+          <ScrollReveal animation="slide-in-from-bottom-4" delay={200}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+              Números que
+              <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Impressionam
+              </span>
+            </h2>
+          </ScrollReveal>
+          
+          <ScrollReveal animation="fade-in" delay={300}>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Acompanhe o desempenho da nossa plataforma em tempo real. 
+              Dados atualizados automaticamente para mostrar nossa eficiência.
+            </p>
+          </ScrollReveal>
         </div>
 
-        {/* Additional Stats */}
-        <div className="grid grid-cols-3 gap-4 lg:gap-6 mb-8 lg:mb-12">
-          {ADDITIONAL_STATS.map((stat, index) => (
-            <AdditionalStatCard key={index} stat={stat} index={index} />
-          ))}
+        {/* Main Stats Grid - Responsivo */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
+          {mainStats.map((stat, index) => {
+            const IconComponent = stat.icon
+            return (
+              <ScrollReveal key={stat.label} animation="scale-in" delay={400 + index * 100}>
+                <div className="group relative">
+                  {/* Card */}
+                  <div className="relative p-6 sm:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 overflow-hidden">
+                    {/* Background Gradient */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                    
+                    {/* Icon */}
+                    <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 ${stat.bgColor} rounded-xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className={`h-6 w-6 sm:h-7 sm:w-7 ${stat.iconColor}`} />
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-sm sm:text-base font-medium text-gray-600">{stat.label}</h3>
+                        <Badge 
+                          variant={stat.trend.includes('-') ? 'destructive' : stat.trend === 'Estável' ? 'secondary' : 'default'}
+                          className="text-xs px-2 py-1"
+                        >
+                          {stat.trend}
+                        </Badge>
+                      </div>
+                      
+                      <div className="flex items-baseline space-x-1">
+                        {isVisible ? (
+                          <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+                            {stat.value}
+                          </span>
+                        ) : (
+                          <LoadingPulse className="h-8 w-20 sm:h-10 sm:w-24" />
+                        )}
+                        <span className="text-lg sm:text-xl font-semibold text-gray-600">{stat.suffix}</span>
+                      </div>
+                      
+                      <p className="text-xs sm:text-sm text-gray-500">{stat.description}</p>
+                    </div>
+                    
+                    {/* Live Indicator */}
+                    <div className="absolute top-4 right-4">
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                        <span className="text-xs text-green-600 font-medium">Live</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            )
+          })}
         </div>
 
-        {/* Real-time Indicator */}
-        <RealTimeIndicator stats={stats} />
+        {/* Additional Stats - Responsivo */}
+        <ScrollReveal animation="slide-in-from-bottom-4" delay={800}>
+          <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 lg:p-10 border border-gray-100">
+            <div className="text-center mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">
+                Mais Estatísticas
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600">
+                Dados adicionais sobre nossa plataforma
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {additionalStats.map((stat, index) => {
+                const IconComponent = stat.icon
+                return (
+                  <ScrollReveal key={stat.label} animation="fade-in" delay={900 + index * 100}>
+                    <div className="text-center group">
+                      <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-gray-100 transition-colors duration-200">
+                        <IconComponent className={`h-5 w-5 sm:h-6 sm:w-6 ${stat.color}`} />
+                      </div>
+                      <div className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs sm:text-sm text-gray-600">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                )
+              })}
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* CTA Section - Responsivo */}
+        <ScrollReveal animation="slide-in-from-bottom-4" delay={1200}>
+          <div className="text-center mt-12 sm:mt-16 lg:mt-20">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+              <div className="text-center sm:text-left">
+                <p className="text-base sm:text-lg font-medium text-gray-900 mb-1 sm:mb-2">
+                  Pronto para começar?
+                </p>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Junte-se a milhares de usuários satisfeitos
+                </p>
+              </div>
+              <button className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+                <Download className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                <span className="text-sm sm:text-base">Converter Agora</span>
+              </button>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )
 }
-
-export default StatsSection;

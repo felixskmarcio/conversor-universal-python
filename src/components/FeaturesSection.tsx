@@ -1,141 +1,225 @@
-import React from 'react';
-import { Shield, Zap, Globe, Lock, Star, Smartphone, CheckCircle, Award, Clock } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+'use client'
 
-function FeaturesSection() {
-  const features = [
-    {
-      icon: Shield,
-      title: 'Segurança Avançada',
-      description: 'Seus arquivos são processados localmente e excluídos automaticamente após a conversão.',
-      badge: 'Privado',
-      variant: 'success' as const,
-      gradient: 'from-green-500 to-emerald-600'
-    },
-    {
-      icon: Zap,
-      title: 'Conversão Ultrarrápida',
-      description: 'Tecnologia otimizada para conversões em segundos, mesmo com arquivos grandes.',
-      badge: 'Rápido',
-      variant: 'warning' as const,
-      gradient: 'from-yellow-500 to-orange-600'
-    },
-    {
-      icon: Globe,
-      title: 'Acesso Universal',
-      description: 'Funciona em qualquer dispositivo com navegador, sem necessidade de instalação.',
-      badge: 'Web',
-      variant: 'info' as const,
-      gradient: 'from-blue-500 to-cyan-600'
-    },
-    {
-      icon: Lock,
-      title: 'Privacidade Total',
-      description: 'Nenhum arquivo é armazenado em nossos servidores. Sua privacidade é garantida.',
-      badge: 'Seguro',
-      variant: 'purple' as const,
-      gradient: 'from-purple-500 to-violet-600'
-    },
-    {
-      icon: Star,
-      title: 'Qualidade Preservada',
-      description: 'Mantemos a formatação e qualidade original dos seus documentos.',
-      badge: 'Premium',
-      variant: 'gradient' as const,
-      gradient: 'from-pink-500 to-rose-600'
-    },
-    {
-      icon: Smartphone,
-      title: 'Compatibilidade Mobile',
-      description: 'Interface responsiva que funciona perfeitamente em smartphones e tablets.',
-      badge: 'Mobile',
-      variant: 'secondary' as const,
-      gradient: 'from-gray-500 to-slate-600'
-    }
-  ];
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  FileText,
+  Shield,
+  Zap,
+  Users,
+  Download,
+  Star,
+  Clock,
+  CheckCircle,
+  Globe,
+  Lock,
+  Smartphone,
+  Cloud
+} from 'lucide-react'
+import { ScrollReveal } from '@/components/ParallaxSection'
 
-  const stats = [
-    { icon: CheckCircle, value: '99.9%', label: 'Taxa de Sucesso' },
-    { icon: Clock, value: '<5s', label: 'Tempo Médio' },
-    { icon: Award, value: '50+', label: 'Formatos Suportados' }
-  ]
+const features = [
+  {
+    icon: FileText,
+    title: 'Múltiplos Formatos',
+    description: 'Suporte completo para PDF, DOCX, TXT, HTML e Markdown com conversão bidirecional.',
+    badge: 'Versátil',
+    gradient: 'from-blue-500 to-cyan-500'
+  },
+  {
+    icon: Shield,
+    title: 'Segurança Total',
+    description: 'Seus documentos são processados localmente e excluídos automaticamente após a conversão.',
+    badge: 'Privado',
+    gradient: 'from-green-500 to-emerald-500'
+  },
+  {
+    icon: Zap,
+    title: 'Conversão Rápida',
+    description: 'Processamento otimizado que converte documentos em segundos, não minutos.',
+    badge: 'Veloz',
+    gradient: 'from-yellow-500 to-orange-500'
+  },
+  {
+    icon: Users,
+    title: 'Interface Intuitiva',
+    description: 'Design moderno e responsivo que funciona perfeitamente em qualquer dispositivo.',
+    badge: 'Fácil',
+    gradient: 'from-purple-500 to-pink-500'
+  },
+  {
+    icon: Download,
+    title: 'Download Instantâneo',
+    description: 'Baixe seus arquivos convertidos imediatamente após o processamento.',
+    badge: 'Direto',
+    gradient: 'from-indigo-500 to-blue-500'
+  },
+  {
+    icon: Star,
+    title: 'Qualidade Premium',
+    description: 'Mantém a formatação original e garante a melhor qualidade na conversão.',
+    badge: 'Premium',
+    gradient: 'from-red-500 to-pink-500'
+  },
+  {
+    icon: Clock,
+    title: 'Disponível 24/7',
+    description: 'Serviço online contínuo, disponível a qualquer hora do dia ou da noite.',
+    badge: 'Sempre',
+    gradient: 'from-teal-500 to-cyan-500'
+  },
+  {
+    icon: Globe,
+    title: 'Acesso Universal',
+    description: 'Funciona em qualquer navegador moderno, sem necessidade de instalação.',
+    badge: 'Web',
+    gradient: 'from-violet-500 to-purple-500'
+  },
+  {
+    icon: Lock,
+    title: 'Dados Protegidos',
+    description: 'Criptografia de ponta a ponta e política rigorosa de não armazenamento.',
+    badge: 'Criptografado',
+    gradient: 'from-gray-600 to-gray-800'
+  }
+]
 
+const stats = [
+  { value: '50K+', label: 'Documentos Convertidos', icon: FileText },
+  { value: '99.9%', label: 'Taxa de Sucesso', icon: CheckCircle },
+  { value: '<3s', label: 'Tempo Médio', icon: Clock },
+  { value: '24/7', label: 'Disponibilidade', icon: Globe }
+]
+
+export default function FeaturesSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            ✨ Recursos Premium
+    <section id="features" className="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+      <div className="mx-auto max-w-7xl">
+        {/* Header Section - Responsivo */}
+        <ScrollReveal animation="fade-in" delay={100}>
+          <div className="text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16 lg:mb-20">
+            <div className="space-y-3 sm:space-y-4">
+              <Badge 
+                variant="secondary" 
+                className="px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-medium bg-indigo-100 text-indigo-700 border-indigo-200"
+              >
+                Recursos Avançados
+              </Badge>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight px-4">
+                Tudo que você precisa para
+                <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+                  {' '}converter documentos
+                </span>
+              </h2>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+                Nossa plataforma oferece as ferramentas mais avançadas para conversão de documentos,
+                garantindo qualidade, segurança e velocidade em cada processo.
+              </p>
+            </div>
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Por que escolher nosso
-            <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent"> conversor</span>?
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Oferecemos a melhor experiência em conversão de documentos com tecnologia de ponta e segurança incomparável
-          </p>
-        </div>
-        
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {stats.map((stat, index) => {
-            const IconComponent = stat.icon;
+        </ScrollReveal>
+
+        {/* Stats Grid - Responsivo */}
+        <ScrollReveal animation="scale-in" delay={200}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon
+              return (
+                <ScrollReveal key={stat.label} animation="slide-in-from-bottom-4" delay={300 + index * 100}>
+                  <Card className="text-center p-4 sm:p-6 bg-white/80 backdrop-blur-sm border-0 shadow-lg hover-lift">
+                    <CardContent className="p-0 space-y-2 sm:space-y-3">
+                      <div className="flex justify-center">
+                        <div className="p-2 sm:p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
+                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                        </div>
+                      </div>
+                      <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs sm:text-sm text-gray-600 font-medium">
+                        {stat.label}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
+              )
+            })}
+          </div>
+        </ScrollReveal>
+
+        {/* Features Grid - Responsivo */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          {features.map((feature, index) => {
+            const IconComponent = feature.icon
             return (
-              <div key={index} className="text-center p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-200/50 hover:bg-white/80 transition-all duration-300">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-4">
-                  <IconComponent className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            );
+              <ScrollReveal 
+                key={feature.title} 
+                animation="slide-in-from-bottom-8" 
+                delay={400 + index * 100}
+              >
+                <Card className="group h-full bg-white/80 backdrop-blur-sm border-0 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl">
+                  <CardHeader className="pb-3 sm:pb-4">
+                    <div className="flex items-start justify-between mb-3 sm:mb-4">
+                      <div className={`p-2 sm:p-3 rounded-lg bg-gradient-to-br ${feature.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                      </div>
+                      <Badge 
+                        variant="secondary" 
+                        className="text-xs px-2 py-1 bg-gray-100 text-gray-700 border-gray-200"
+                      >
+                        {feature.badge}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                      {feature.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <CardDescription className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </ScrollReveal>
+            )
           })}
         </div>
-        
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <div
-                key={index}
-                className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-gray-200 hover:-translate-y-1"
-              >
-                {/* Background Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`} />
-                
-                <div className="relative">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className={`w-14 h-14 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className="h-7 w-7 text-white" />
-                      </div>
+
+        {/* Bottom CTA Section - Responsivo */}
+        <ScrollReveal animation="fade-in" delay={800}>
+          <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+            <Card className="bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 border-0 shadow-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <div className="space-y-4 sm:space-y-6">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+                      Pronto para começar?
+                    </h3>
+                    <p className="text-sm sm:text-base lg:text-lg text-indigo-100 max-w-2xl mx-auto">
+                      Experimente nossa plataforma agora mesmo e descubra como é fácil converter seus documentos
+                      com qualidade profissional.
+                    </p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+                    <div className="flex items-center space-x-2 text-indigo-100">
+                      <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="text-xs sm:text-sm font-medium">Gratuito para usar</span>
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-gray-800">
-                          {feature.title}
-                        </h3>
-                        <Badge variant={feature.variant} size="sm" className="text-xs">
-                          {feature.badge}
-                        </Badge>
-                      </div>
-                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700">
-                        {feature.description}
-                      </p>
+                    <div className="flex items-center space-x-2 text-indigo-100">
+                      <Lock className="h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="text-xs sm:text-sm font-medium">100% Seguro</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-indigo-100">
+                      <Zap className="h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="text-xs sm:text-sm font-medium">Resultados instantâneos</span>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-        
-
+              </CardContent>
+            </Card>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
-  );
+  )
 }
-
-export default FeaturesSection;

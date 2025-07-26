@@ -1,222 +1,264 @@
-import React from 'react';
-import { FileText, Github, Mail, Shield, Zap, Globe, Heart, Star, Users, Clock, Award, ExternalLink, Code, Coffee } from 'lucide-react';
-import { Badge, StatusBadge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+'use client'
 
-export function Footer() {
-  const supportedFormats = [
-    { name: 'PDF', popular: true },
-    { name: 'DOCX', popular: true },
-    { name: 'TXT', popular: false },
-    { name: 'RTF', popular: false },
-    { name: 'ODT', popular: false },
-    { name: 'HTML', popular: true },
-    { name: 'MD', popular: false }
-  ];
+import { Badge } from '@/components/ui/badge'
+import { StatusBadge } from '@/components/ui/status-badge'
+import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
+import {
+  FileText,
+  Github,
+  Twitter,
+  Linkedin,
+  Mail,
+  Heart,
+  Shield,
+  Zap,
+  Globe,
+  ExternalLink,
+  Code,
+  Users,
+  Star,
+  Download,
+  Clock,
+  Lock
+} from 'lucide-react'
+import { ScrollReveal } from '@/components/ParallaxSection'
 
-  const features = [
-    { icon: Shield, text: '100% Seguro', description: 'Criptografia de ponta' },
-    { icon: Zap, text: 'Ultra Rápido', description: 'Conversão em segundos' },
-    { icon: Globe, text: 'Acesso Global', description: 'Disponível 24/7' },
-    { icon: Users, text: 'Multi-usuário', description: 'Suporte colaborativo' }
-  ];
+const supportedFormats = [
+  { name: 'PDF', description: 'Portable Document Format' },
+  { name: 'DOCX', description: 'Microsoft Word Document' },
+  { name: 'TXT', description: 'Plain Text File' },
+  { name: 'HTML', description: 'HyperText Markup Language' },
+  { name: 'MD', description: 'Markdown Document' }
+]
 
-  const stats = [
-    { icon: FileText, label: 'Conversões', value: '15.420+', trend: '+12%' },
-    { icon: Users, label: 'Usuários', value: '2.847', trend: '+8%' },
-    { icon: Clock, label: 'Uptime', value: '99.9%', trend: 'Estável' }
-  ];
+const features = [
+  { icon: Shield, name: 'Seguro', description: 'Criptografia de ponta' },
+  { icon: Zap, name: 'Rápido', description: 'Conversão em segundos' },
+  { icon: Globe, name: 'Universal', description: 'Funciona em qualquer lugar' },
+  { icon: Lock, name: 'Privado', description: 'Sem armazenamento' }
+]
 
-  const quickLinks = [
-    { name: 'Documentação', href: '#' },
-    { name: 'API', href: '#' },
-    { name: 'Suporte', href: '#' },
-    { name: 'Changelog', href: '#' }
-  ];
+const quickStats = [
+  { label: 'Conversões', value: '50K+', icon: FileText },
+  { label: 'Usuários', value: '10K+', icon: Users },
+  { label: 'Uptime', value: '99.9%', icon: Clock },
+  { label: 'Formatos', value: '5+', icon: Star }
+]
 
+const socialLinks = [
+  { icon: Github, href: '#', label: 'GitHub', color: 'hover:text-gray-900' },
+  { icon: Twitter, href: '#', label: 'Twitter', color: 'hover:text-blue-500' },
+  { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-600' },
+  { icon: Mail, href: '#', label: 'Email', color: 'hover:text-red-500' }
+]
+
+const quickLinks = [
+  { name: 'Converter Documentos', href: '#converter' },
+  { name: 'Recursos', href: '#features' },
+  { name: 'Estatísticas', href: '#stats' },
+  { name: 'Sobre', href: '#about' },
+  { name: 'Ajuda', href: '#help' },
+  { name: 'Contato', href: '#contact' }
+]
+
+export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-      
-      <div className="container mx-auto px-4 py-16 relative">
-        {/* Seção Principal */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Sobre o Projeto */}
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 shadow-lg">
-                <FileText className="h-5 w-5 text-primary-foreground" />
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      {/* Main Footer Content */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+          {/* Brand Section - Responsivo */}
+          <div className="lg:col-span-1 space-y-4 sm:space-y-6">
+            <ScrollReveal animation="slide-in-from-left-4" delay={100}>
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
+                    <FileText className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold">DocConverter</h3>
+                    <p className="text-xs sm:text-sm text-gray-400">Conversão Profissional</p>
+                  </div>
+                </div>
+                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+                  A plataforma mais avançada para conversão de documentos. 
+                  Rápido, seguro e confiável.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <StatusBadge status="online" text="Online" className="text-xs" />
+                  <Badge variant="secondary" className="text-xs px-2 py-1 bg-green-100 text-green-800">
+                    <Shield className="h-3 w-3 mr-1" />
+                    Seguro
+                  </Badge>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Conversor Universal
-                </h3>
-                <StatusBadge status="online" size="sm" className="mt-1" />
-              </div>
-            </div>
-            <p className="text-gray-300 leading-relaxed">
-              A solução mais confiável e avançada para conversão de documentos online. 
-              Rápido, seguro e completamente gratuito.
-            </p>
-            <div className="flex items-center space-x-2">
-              <Heart className="h-4 w-4 text-red-500 animate-pulse" />
-              <span className="text-sm text-gray-400">Feito com amor no Brasil</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Coffee className="h-4 w-4 text-amber-500" />
-              <span className="text-sm text-gray-400">Alimentado por café e código</span>
+            </ScrollReveal>
+          </div>
+
+          {/* Supported Formats - Responsivo */}
+          <div className="space-y-4 sm:space-y-6">
+            <ScrollReveal animation="fade-in" delay={200}>
+              <h4 className="text-lg sm:text-xl font-semibold text-white">Formatos Suportados</h4>
+            </ScrollReveal>
+            <div className="space-y-3">
+              {supportedFormats.map((format, index) => (
+                <ScrollReveal key={format.name} animation="slide-in-from-bottom-4" delay={250 + index * 50}>
+                  <div className="flex items-center justify-between p-2 sm:p-3 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors">
+                    <div>
+                      <div className="font-medium text-sm sm:text-base text-white">{format.name}</div>
+                      <div className="text-xs sm:text-sm text-gray-400">{format.description}</div>
+                    </div>
+                    <Badge variant="outline" className="text-xs border-gray-600 text-gray-300">
+                      Ativo
+                    </Badge>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
           </div>
 
-          {/* Formatos Suportados */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold text-white flex items-center space-x-2">
-              <Code className="h-5 w-5 text-primary" />
-              <span>Formatos Suportados</span>
-            </h4>
-            <div className="space-y-3">
-              <div className="flex flex-wrap gap-2">
-                {supportedFormats.map((format, index) => (
-                  <Badge 
-                    key={index} 
-                    variant={format.popular ? "gradient" : "secondary"} 
-                    size="sm"
-                    className="text-xs hover:scale-105 transition-transform duration-200"
-                  >
-                    {format.name}
-                    {format.popular && <Star className="ml-1 h-3 w-3" />}
-                  </Badge>
+          {/* Features & Stats - Responsivo */}
+          <div className="space-y-6 sm:space-y-8">
+            {/* Features */}
+            <div className="space-y-4">
+              <ScrollReveal animation="fade-in" delay={300}>
+                <h4 className="text-lg sm:text-xl font-semibold text-white">Recursos</h4>
+              </ScrollReveal>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                {features.map((feature, index) => {
+                  const IconComponent = feature.icon
+                  return (
+                    <ScrollReveal key={feature.name} animation="scale-in" delay={350 + index * 75}>
+                      <div className="flex items-center space-x-3 p-2 sm:p-3 rounded-lg bg-gray-800/30 hover:bg-gray-700/30 transition-colors">
+                        <div className="p-1.5 sm:p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-md">
+                          <IconComponent className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
+                        </div>
+                        <div>
+                          <div className="font-medium text-sm text-white">{feature.name}</div>
+                          <div className="text-xs text-gray-400">{feature.description}</div>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="space-y-4">
+              <ScrollReveal animation="fade-in" delay={500}>
+                <h4 className="text-lg sm:text-xl font-semibold text-white">Estatísticas</h4>
+              </ScrollReveal>
+              <div className="grid grid-cols-2 gap-3">
+                {quickStats.map((stat, index) => {
+                  const IconComponent = stat.icon
+                  return (
+                    <ScrollReveal key={stat.label} animation="slide-in-from-bottom-4" delay={550 + index * 75}>
+                      <div className="text-center p-3 sm:p-4 bg-gray-800/50 rounded-lg">
+                        <div className="flex justify-center mb-2">
+                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-400" />
+                        </div>
+                        <div className="text-lg sm:text-xl font-bold text-white">{stat.value}</div>
+                        <div className="text-xs text-gray-400">{stat.label}</div>
+                      </div>
+                    </ScrollReveal>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links & Social - Responsivo */}
+          <div className="space-y-6 sm:space-y-8">
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <ScrollReveal animation="fade-in" delay={600}>
+                <h4 className="text-lg sm:text-xl font-semibold text-white">Links Rápidos</h4>
+              </ScrollReveal>
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-2">
+                {quickLinks.map((link, index) => (
+                  <ScrollReveal key={link.name} animation="slide-in-from-right-4" delay={650 + index * 50}>
+                    <a
+                      href={link.href}
+                      className="block text-sm sm:text-base text-gray-300 hover:text-white transition-colors py-1 sm:py-2 hover:translate-x-1 transform duration-200"
+                    >
+                      {link.name}
+                    </a>
+                  </ScrollReveal>
                 ))}
               </div>
-              <p className="text-xs text-gray-400 flex items-center space-x-1">
-                <Zap className="h-3 w-3" />
-                <span>Mais formatos sendo adicionados regularmente</span>
-              </p>
             </div>
-          </div>
 
-          {/* Recursos */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold text-white flex items-center space-x-2">
-              <Award className="h-5 w-5 text-primary" />
-              <span>Recursos Premium</span>
-            </h4>
+            {/* Social Links */}
             <div className="space-y-4">
-              {features.map((feature, index) => {
-                const IconComponent = feature.icon;
-                return (
-                  <div key={index} className="group flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors duration-200">
-                    <div className="flex-shrink-0">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200">
-                        <IconComponent className="h-4 w-4 text-primary" />
-                      </div>
-                    </div>
-                    <div>
-                      <span className="text-sm font-medium text-white">{feature.text}</span>
-                      <p className="text-xs text-gray-400 mt-1">{feature.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Estatísticas */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold text-white flex items-center space-x-2">
-              <Users className="h-5 w-5 text-primary" />
-              <span>Estatísticas</span>
-            </h4>
-            <div className="space-y-4">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
-                return (
-                  <div key={index} className="group p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-200">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center space-x-2">
-                        <IconComponent className="h-4 w-4 text-primary" />
-                        <span className="text-sm text-gray-300">{stat.label}</span>
-                      </div>
-                      <Badge variant="success" size="sm" className="text-xs">
-                        {stat.trend}
-                      </Badge>
-                    </div>
-                    <div className="text-lg font-bold text-white">{stat.value}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Links Rápidos */}
-        <div className="border-t border-gray-700/50 pt-8 mb-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {quickLinks.map((link, index) => (
-              <a 
-                key={index}
-                href={link.href}
-                className="group flex items-center space-x-2 p-3 rounded-lg hover:bg-white/5 transition-colors duration-200"
-              >
-                <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors duration-200" />
-                <span className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                  {link.name}
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Linha Divisória Final */}
-        <div className="border-t border-gray-700/50 pt-8">
-          <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
-            {/* Links Sociais */}
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm" asChild className="hover:bg-white/10">
-                <a href="https://github.com/felixskmarcio/conversor-universal-python/tree/master" target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
-                </a>
-              </Button>
-              
-              <Button variant="ghost" size="sm" asChild className="hover:bg-white/10">
-                <a href="mailto:contato@exemplo.com">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Contato
-                </a>
-              </Button>
-              
-
-            </div>
-
-            {/* Copyright */}
-            <div className="text-center lg:text-right space-y-2">
-              <p className="text-sm text-gray-300">
-                © 2025 Conversor Universal. Todos os direitos reservados.
-              </p>
-              <div className="flex items-center justify-center lg:justify-end space-x-4 text-xs text-gray-500">
-                <span className="flex items-center space-x-1">
-                  <Code className="h-3 w-3" />
-                  <span>Next.js</span>
-                </span>
-                <span>•</span>
-                <span className="flex items-center space-x-1">
-                  <FileText className="h-3 w-3" />
-                  <span>Python</span>
-                </span>
-                <span>•</span>
-                <span className="flex items-center space-x-1">
-                  <Shield className="h-3 w-3" />
-                  <span>Seguro</span>
-                </span>
+              <ScrollReveal animation="fade-in" delay={800}>
+                <h4 className="text-lg sm:text-xl font-semibold text-white">Conecte-se</h4>
+              </ScrollReveal>
+              <div className="flex flex-wrap gap-3">
+                {socialLinks.map((social, index) => {
+                  const IconComponent = social.icon
+                  return (
+                    <ScrollReveal key={social.label} animation="scale-in" delay={850 + index * 100}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className={`p-2 sm:p-3 text-gray-400 ${social.color} transition-colors bg-gray-800/50 hover:bg-gray-700/50`}
+                        asChild
+                      >
+                        <a href={social.href} aria-label={social.label}>
+                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5" />
+                        </a>
+                      </Button>
+                    </ScrollReveal>
+                  )
+                })}
               </div>
             </div>
+
+            {/* CTA Button */}
+            <ScrollReveal animation="slide-in-from-bottom-4" delay={1000}>
+              <Button className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-sm sm:text-base py-2 sm:py-3">
+                <Download className="h-4 w-4 mr-2" />
+                Começar Agora
+              </Button>
+            </ScrollReveal>
           </div>
         </div>
       </div>
-    </footer>
-  );
-}
 
-export default Footer
+      {/* Bottom Bar - Responsivo */}
+      <div className="border-t border-gray-700">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <ScrollReveal animation="fade-in" delay={1100}>
+            <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
+              <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+                <p className="text-xs sm:text-sm text-gray-400">
+                  © 2024 DocConverter. Todos os direitos reservados.
+                </p>
+                <div className="flex items-center space-x-1 text-xs sm:text-sm text-gray-400">
+                  <span>Feito com</span>
+                  <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-red-500 fill-current" />
+                  <span>por desenvolvedores brasileiros</span>
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
+                <a href="#privacy" className="hover:text-white transition-colors">
+                  Privacidade
+                </a>
+                <span className="hidden sm:inline">•</span>
+                <a href="#terms" className="hover:text-white transition-colors">
+                  Termos
+                </a>
+                <span className="hidden sm:inline">•</span>
+                <a href="#support" className="hover:text-white transition-colors">
+                  Suporte
+                </a>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </footer>
+  )
+}
