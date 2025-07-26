@@ -174,7 +174,7 @@ export function Footer() {
             {/* Links Sociais */}
             <div className="flex items-center space-x-4">
               <Button variant="ghost" size="sm" asChild className="hover:bg-white/10">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/felixskmarcio/conversor-universal-python/tree/master" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </a>

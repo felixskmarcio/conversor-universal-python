@@ -44,7 +44,7 @@ function Header() {
         <div className="flex items-center space-x-2">
           <div className="hidden md:flex items-center space-x-2">
             <Button variant="ghost" size="sm" asChild className="hover-lift">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/felixskmarcio/conversor-universal-python/tree/master" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-4 w-4" />
                 GitHub
               </a>
@@ -63,7 +63,7 @@ function Header() {
               <DropdownMenuLabel>Navegação</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/felixskmarcio/conversor-universal-python/tree/master" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </a>
