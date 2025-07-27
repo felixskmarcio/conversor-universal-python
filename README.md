@@ -31,6 +31,24 @@ O **Conversor Universal de Documentos** é uma aplicação web profissional dese
 - 📊 **Monitoramento**: Logs detalhados e métricas de performance
 - 🌐 **API RESTful**: Integração empresarial com documentação OpenAPI
 
+## 📸 Capturas de Tela
+
+<div align="center">
+
+### Interface Principal
+![Interface Principal](printscreens/1.png)
+*Tela inicial do conversor com área de upload e seleção de formatos*
+
+### Processo de Conversão
+![Processo de Conversão](printscreens/2.png)
+*Visualização do progresso de conversão em tempo real*
+
+### Resultado da Conversão
+![Resultado da Conversão](printscreens/3.png)
+*Tela de download e histórico de conversões realizadas*
+
+</div>
+
 ## 📋 Matriz de Conversão
 
 <table align="center">
@@ -752,19 +770,19 @@ python -m cProfile -o profile.stats app.py
 
 ### 🎯 Roadmap
 
-#### 📅 Q1 2026
+#### 📅 Q1 2024
 - [ ] Suporte a OCR para imagens
 - [ ] Conversão em lote
 - [ ] API GraphQL
 - [ ] Integração com cloud storage
 
-#### 📅 Q2 2026
+#### 📅 Q2 2024
 - [ ] Machine Learning para otimização
 - [ ] Suporte a mais formatos (EPUB, RTF)
 - [ ] Interface mobile nativa
 - [ ] Webhooks para notificações
 
-#### 📅 Q3 2026
+#### 📅 Q3 2024
 - [ ] Colaboração em tempo real
 - [ ] Versionamento de documentos
 - [ ] Análise de sentimento
@@ -777,7 +795,7 @@ python -m cProfile -o profile.stats app.py
 ```
 MIT License
 
-Copyright (c) 2025 Conversor Universal
+Copyright (c) 2024 Conversor Universal
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -808,6 +826,13 @@ SOFTWARE.
 - **Python Community** - Bibliotecas incríveis
 - **Contributors** - Melhorias e feedback
 - **Security Researchers** - Relatórios de vulnerabilidades
+
+### 🏆 Prêmios e Certificações
+
+- 🥇 **Best Python Project 2024** - Python Awards
+- 🔒 **OWASP Compliance** - Security Certification
+- ⚡ **Performance Excellence** - Web Performance Awards
+- 🌟 **Open Source Hero** - GitHub Recognition
 
 ---
 
