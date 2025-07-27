@@ -36,15 +36,15 @@ O **Conversor Universal de Documentos** é uma aplicação web profissional dese
 <div align="center">
 
 ### Interface Principal
-![Interface Principal](frontend/printscreens/1.png)
+![Interface Principal](https://raw.githubusercontent.com/felixskmarcio/conversor-universal-python/master/printscreens/1.png)
 *Tela inicial do conversor com área de upload e seleção de formatos*
 
 ### Processo de Conversão
-![Processo de Conversão](frontend/printscreens/2.png)
+![Processo de Conversão](https://raw.githubusercontent.com/felixskmarcio/conversor-universal-python/master/printscreens/2.png)
 *Visualização do progresso de conversão em tempo real*
 
 ### Resultado da Conversão
-![Resultado da Conversão](frontend/printscreens/3.png)
+![Resultado da Conversão](https://raw.githubusercontent.com/felixskmarcio/conversor-universal-python/master/printscreens/3.png)
 *Tela de download e histórico de conversões realizadas*
 
 </div>
