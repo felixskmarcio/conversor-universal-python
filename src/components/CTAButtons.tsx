@@ -38,20 +38,20 @@ export function CTAButtons({
       )}>
         <Button 
           variant="outline" 
-          className="w-full sm:flex-1 justify-center"
+          className="w-full sm:flex-1 justify-center items-center"
           onClick={handleGitHubClick}
           aria-label="Ver projeto no GitHub"
         >
-          <Github className="h-4 w-4 mr-2" />
-          Ver no GitHub
+          <Github className="h-4 w-4 mr-2 flex-shrink-0 inline" />
+          <span>Ver no GitHub</span>
         </Button>
         <Button 
-          className="w-full sm:flex-1 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 justify-center"
+          className="w-full sm:flex-1 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 justify-center items-center"
           onClick={handleStartClick}
           aria-label="Começar a usar o conversor agora"
         >
-          <Zap className="h-4 w-4 mr-2" />
-          Começar Agora
+          <Zap className="h-4 w-4 mr-2 flex-shrink-0 inline" />
+          <span>Começar Agora</span>
         </Button>
       </div>
     )
@@ -65,20 +65,20 @@ export function CTAButtons({
       <Button 
         variant="ghost" 
         size="sm"
-        className="text-sm px-3 py-2"
+        className="text-sm px-3 py-2 flex items-center"
         onClick={handleGitHubClick}
         aria-label="Ver projeto no GitHub"
       >
-        <Github className="h-4 w-4 mr-2" />
+        <Github className="h-4 w-4 mr-2 flex-shrink-0 inline" />
         <span className="hidden lg:inline">GitHub</span>
       </Button>
       <Button 
         size="sm"
-        className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-sm px-3 lg:px-4 py-2"
+        className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-sm px-3 lg:px-4 py-2 flex items-center"
         onClick={handleStartClick}
         aria-label="Começar a usar o conversor"
       >
-        <Zap className="h-4 w-4 mr-1 lg:mr-2" />
+        <Zap className="h-4 w-4 mr-1 lg:mr-2 flex-shrink-0 inline" />
         <span className="hidden lg:inline">Começar</span>
         <span className="lg:hidden">Start</span>
       </Button>

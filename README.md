@@ -852,8 +852,4 @@ SOFTWARE.
 [![Built with Flask](https://img.shields.io/badge/Built%20with-Flask-green.svg)](https://flask.palletsprojects.com/)
 [![Powered by Open Source](https://img.shields.io/badge/Powered%20by-Open%20Source-blue.svg)](https://opensource.org/)
 
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> 70b8b8a20b144eefae94d0f59b92ea2b023a6853

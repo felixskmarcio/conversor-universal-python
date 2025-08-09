@@ -23,7 +23,10 @@ from typing import Optional, Dict, Any, List
 from flask import Flask, render_template, request, jsonify, send_file
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-import magic
+try:
+    import magic
+except ImportError:
+    magic = None
 import tempfile
 import shutil
 
@@ -675,10 +678,14 @@ def allowed_file(file_storage):
     if not allowed_ext:
         return False
 
-    # Verifica o tipo MIME real do arquivo
-    file_storage.seek(0)
-    mime_type = magic.from_buffer(file_storage.read(2048), mime=True)
-    file_storage.seek(0) # Reseta o ponteiro novamente para o uso posterior
+    # Verifica o tipo MIME real do arquivo (se magic estiver disponível)
+    if magic:
+        file_storage.seek(0)
+        mime_type = magic.from_buffer(file_storage.read(2048), mime=True)
+        file_storage.seek(0) # Reseta o ponteiro novamente para o uso posterior
+    else:
+        # Se magic não estiver disponível, usa apenas verificação de extensão
+        return True
 
     expected_mimes = {
         'pdf': 'application/pdf',
@@ -691,10 +698,13 @@ def allowed_file(file_storage):
         'markdown': 'text/markdown'
     }
 
-    file_ext = filename.rsplit('.', 1)[1].lower()
-    expected_mime = expected_mimes.get(file_ext)
-
-    return mime_type == expected_mime
+    if magic:
+        file_ext = filename.rsplit('.', 1)[1].lower()
+        expected_mime = expected_mimes.get(file_ext)
+        return mime_type == expected_mime
+    else:
+        # Se magic não estiver disponível, retorna True (já verificou extensão)
+        return True
 
 @app.route('/')
 def index():

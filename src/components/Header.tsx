@@ -25,7 +25,7 @@ export default function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo e Título - Responsivo */}
-          <ScrollReveal animation="slide-in-from-left-4" delay={100}>
+          <ScrollReveal delay={100}>
             <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
                 <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
@@ -43,21 +43,21 @@ export default function Header() {
 
           {/* Navigation Desktop - Oculto em mobile */}
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            <ScrollReveal animation="fade-in" delay={200}>
+            <ScrollReveal delay={200}>
               <Navigation variant="desktop" />
             </ScrollReveal>
           </div>
 
           {/* Status Badges Desktop - Oculto em mobile */}
           <div className="hidden xl:flex items-center space-x-3">
-            <ScrollReveal animation="scale-in" delay={300}>
+            <ScrollReveal delay={300}>
               <StatusBadges variant="desktop" />
             </ScrollReveal>
           </div>
 
           {/* CTA Buttons Desktop - Responsivo */}
           <div className="hidden md:flex">
-            <ScrollReveal animation="slide-in-from-right-4" delay={300}>
+            <ScrollReveal delay={300}>
               <CTAButtons variant="desktop" />
             </ScrollReveal>
           </div>

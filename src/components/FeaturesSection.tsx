@@ -96,7 +96,7 @@ export default function FeaturesSection() {
     <section id="features" className="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
       <div className="mx-auto max-w-7xl">
         {/* Header Section - Responsivo */}
-        <ScrollReveal animation="fade-in" delay={100}>
+        <ScrollReveal delay={100}>
           <div className="text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16 lg:mb-20">
             <div className="space-y-3 sm:space-y-4">
               <Badge 
@@ -120,12 +120,12 @@ export default function FeaturesSection() {
         </ScrollReveal>
 
         {/* Stats Grid - Responsivo com altura padronizada */}
-        <ScrollReveal animation="scale-in" delay={200}>
+        <ScrollReveal delay={200}>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
             {stats.map((stat, index) => {
               const IconComponent = stat.icon
               return (
-                <ScrollReveal key={stat.label} animation="slide-in-from-bottom-4" delay={300 + index * 100}>
+                <ScrollReveal key={stat.label} delay={300 + index * 100}>
                   <Card className="text-center bg-white/80 backdrop-blur-sm border-0 shadow-lg hover-lift h-[180px] flex flex-col">
                     <CardContent className="p-4 sm:p-6 flex-1 flex flex-col justify-between">
                       <div className="flex justify-center mb-4">
@@ -156,7 +156,6 @@ export default function FeaturesSection() {
             return (
               <ScrollReveal 
                 key={feature.title} 
-                animation="slide-in-from-bottom-8" 
                 delay={400 + index * 100}
               >
                 <Card className="group h-full bg-white/80 backdrop-blur-sm border-0 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl">
@@ -188,7 +187,7 @@ export default function FeaturesSection() {
         </div>
 
         {/* Bottom CTA Section - Responsivo */}
-        <ScrollReveal animation="fade-in" delay={800}>
+        <ScrollReveal delay={800}>
           <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
             <Card className="bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 border-0 shadow-2xl">
               <CardContent className="p-6 sm:p-8 lg:p-12">

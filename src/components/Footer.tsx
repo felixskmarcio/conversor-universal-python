@@ -67,7 +67,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Section - Responsivo */}
           <div className="lg:col-span-1 space-y-4 sm:space-y-6">
-            <ScrollReveal animation="slide-in-from-left-4" delay={100}>
+            <ScrollReveal delay={100}>
               <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
@@ -95,12 +95,12 @@ export default function Footer() {
 
           {/* Supported Formats - Responsivo */}
           <div className="space-y-4 sm:space-y-6">
-            <ScrollReveal animation="fade-in" delay={200}>
+            <ScrollReveal delay={200}>
               <h4 className="text-lg sm:text-xl font-semibold text-white">Formatos Suportados</h4>
             </ScrollReveal>
             <div className="space-y-3">
               {supportedFormats.map((format, index) => (
-                <ScrollReveal key={format.name} animation="slide-in-from-bottom-4" delay={250 + index * 50}>
+                <ScrollReveal key={format.name} delay={250 + index * 50}>
                   <div className="flex items-center justify-between p-2 sm:p-3 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors">
                     <div>
                       <div className="font-medium text-sm sm:text-base text-white">{format.name}</div>
@@ -119,14 +119,14 @@ export default function Footer() {
           <div className="space-y-6 sm:space-y-8">
             {/* Features */}
             <div className="space-y-4">
-              <ScrollReveal animation="fade-in" delay={300}>
+              <ScrollReveal delay={300}>
                 <h4 className="text-lg sm:text-xl font-semibold text-white">Recursos</h4>
               </ScrollReveal>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
                 {features.map((feature, index) => {
                   const IconComponent = feature.icon
                   return (
-                    <ScrollReveal key={feature.name} animation="scale-in" delay={350 + index * 75}>
+                    <ScrollReveal key={feature.name} delay={350 + index * 75}>
                       <div className="flex items-center space-x-3 p-2 sm:p-3 rounded-lg bg-gray-800/30 hover:bg-gray-700/30 transition-colors">
                         <div className="p-1.5 sm:p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-md">
                           <IconComponent className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
@@ -144,14 +144,14 @@ export default function Footer() {
 
             {/* Quick Stats */}
             <div className="space-y-4">
-              <ScrollReveal animation="fade-in" delay={500}>
+              <ScrollReveal delay={500}>
                 <h4 className="text-lg sm:text-xl font-semibold text-white">Estatísticas</h4>
               </ScrollReveal>
               <div className="grid grid-cols-2 gap-3">
                 {quickStats.map((stat, index) => {
                   const IconComponent = stat.icon
                   return (
-                    <ScrollReveal key={stat.label} animation="slide-in-from-bottom-4" delay={550 + index * 75}>
+                    <ScrollReveal key={stat.label} delay={550 + index * 75}>
                       <div className="text-center p-3 sm:p-4 bg-gray-800/50 rounded-lg">
                         <div className="flex justify-center mb-2">
                           <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-400" />
@@ -170,12 +170,12 @@ export default function Footer() {
           <div className="space-y-6 sm:space-y-8">
             {/* Quick Links */}
             <div className="space-y-4">
-              <ScrollReveal animation="fade-in" delay={600}>
+              <ScrollReveal delay={600}>
                 <h4 className="text-lg sm:text-xl font-semibold text-white">Links Rápidos</h4>
               </ScrollReveal>
               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2">
                 {quickLinks.map((link, index) => (
-                  <ScrollReveal key={link.name} animation="slide-in-from-right-4" delay={650 + index * 50}>
+                  <ScrollReveal key={link.name} delay={650 + index * 50}>
                     <a
                       href={link.href}
                       className="block text-sm sm:text-base text-gray-300 hover:text-white transition-colors py-1 sm:py-2 hover:translate-x-1 transform duration-200"
@@ -189,24 +189,21 @@ export default function Footer() {
 
             {/* Social Links */}
             <div className="space-y-4">
-              <ScrollReveal animation="fade-in" delay={800}>
+              <ScrollReveal delay={800}>
                 <h4 className="text-lg sm:text-xl font-semibold text-white">Conecte-se</h4>
               </ScrollReveal>
               <div className="flex flex-wrap gap-3">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon
                   return (
-                    <ScrollReveal key={social.label} animation="scale-in" delay={850 + index * 100}>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className={`p-2 sm:p-3 text-gray-400 ${social.color} transition-colors bg-gray-800/50 hover:bg-gray-700/50`}
-                        asChild
+                    <ScrollReveal key={social.label} delay={850 + index * 100}>
+                      <a 
+                        href={social.href} 
+                        aria-label={social.label}
+                        className={`inline-flex items-center justify-center p-2 sm:p-3 text-gray-400 ${social.color} transition-colors bg-gray-800/50 hover:bg-gray-700/50 rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50`}
                       >
-                        <a href={social.href} aria-label={social.label}>
-                          <IconComponent className="h-4 w-4 sm:h-5 sm:w-5" />
-                        </a>
-                      </Button>
+                        <IconComponent className="h-4 w-4 sm:h-5 sm:w-5" />
+                      </a>
                     </ScrollReveal>
                   )
                 })}
@@ -214,7 +211,7 @@ export default function Footer() {
             </div>
 
             {/* CTA Button */}
-            <ScrollReveal animation="slide-in-from-bottom-4" delay={1000}>
+            <ScrollReveal delay={1000}>
               <Button 
                 className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-sm sm:text-base py-2 sm:py-3"
                 onClick={() => {
@@ -235,7 +232,7 @@ export default function Footer() {
       {/* Bottom Bar - Responsivo */}
       <div className="border-t border-gray-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-          <ScrollReveal animation="fade-in" delay={1100}>
+          <ScrollReveal delay={1100}>
             <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
               <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
                 <p className="text-xs sm:text-sm text-gray-400">
